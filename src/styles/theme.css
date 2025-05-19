@@ -1,0 +1,36 @@
+/* Additional theme-specific styles */
+.dark {
+  --primary: #d946ef;
+  --secondary: #7c3aed;
+}
+
+/* Pulse animation for special elements */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+/* Special birthday animation */
+@keyframes birthday {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.birthday-animation {
+  animation: birthday 0.5s ease-in-out infinite;
+}

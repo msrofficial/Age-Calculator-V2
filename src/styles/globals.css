@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #ec4899;
+  --secondary: #8b5cf6;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+/* Datepicker dark mode styles */
+.dark .react-datepicker {
+  background-color: #1f2937;
+  border-color: #4b5563;
+}
+
+.dark .react-datepicker__header {
+  background-color: #111827;
+  border-bottom-color: #4b5563;
+}
+
+.dark .react-datepicker__current-month,
+.dark .react-datepicker__day-name,
+.dark .react-datepicker__day {
+  color: #f3f4f6;
+}
+
+.dark .react-datepicker__day:hover {
+  background-color: #4b5563;
+}
+
+.dark .react-datepicker__day--selected {
+  background-color: var(--primary);
+  color: white;
+}
+
+.dark .react-datepicker__day--keyboard-selected {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.dark .react-datepicker__navigation-icon::before {
+  border-color: #f3f4f6;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom classes */
+.glass-effect {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
