@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Confetti from 'react-confetti'
-import Sound from 'react-sound'
+import useSound from 'use-sound'
 import { FaBirthdayCake, FaCalendarAlt, FaMoon, FaSun } from 'react-icons/fa'
 import { GiPresent } from 'react-icons/gi'
 import { RiHeartFill } from 'react-icons/ri'
@@ -25,7 +25,9 @@ function App() {
     width: window.innerWidth,
     height: window.innerHeight,
   })
-
+  
+  const [playCelebration] = useSound(celebrationSound)
+  
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({
@@ -33,11 +35,11 @@ function App() {
         height: window.innerHeight,
       })
     }
-
+    
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-
+  
   const handleDateChange = (date) => {
     setBirthDate(date)
     const calculatedAge = calculateAge(date)
@@ -45,41 +47,35 @@ function App() {
     
     const today = new Date()
     const birthDateObj = new Date(date)
-    const isBday = today.getDate() === birthDateObj.getDate() && 
-                   today.getMonth() === birthDateObj.getMonth()
+    const isBday = today.getDate() === birthDateObj.getDate() &&
+      today.getMonth() === birthDateObj.getMonth()
     
     setIsBirthday(isBday)
     setCharacterMood(isBday ? 'happy' : 'neutral')
     
     if (isBday) {
       setShowConfetti(true)
+      playCelebration()
       setTimeout(() => setShowConfetti(false), 10000)
     }
   }
-
+  
   const toggleTheme = () => {
     setDarkMode(!darkMode)
     setCharacterMood(!darkMode ? 'excited' : 'neutral')
     setTimeout(() => setCharacterMood('neutral'), 2000)
   }
-
+  
   return (
     <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-pink-50 text-gray-900'}`}>
       {showConfetti && (
-        <>
-          <Confetti
-            width={windowSize.width}
-            height={windowSize.height}
-            recycle={false}
-            numberOfPieces={500}
-            gravity={0.2}
-          />
-          <Sound
-            url={celebrationSound}
-            playStatus={Sound.status.PLAYING}
-            loop={false}
-          />
-        </>
+        <Confetti
+          width={windowSize.width}
+          height={windowSize.height}
+          recycle={false}
+          numberOfPieces={500}
+          gravity={0.2}
+        />
       )}
       
       <div className="container mx-auto px-4 py-8">
