@@ -12,7 +12,7 @@ import DatePicker from './components/DatePicker'
 import ThemeToggle from './components/ThemeToggle'
 import { calculateAge } from './utils/calculateAge'
 
-import celebrationSound from '../public/sounds/celebration.mp3'
+import celebrationSound from '../src/sounds/celebration.mp3'
 
 function App() {
   const [birthDate, setBirthDate] = useState('')
