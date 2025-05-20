@@ -1,12 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from 'tailwindcss'
 import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  css: {
+    postcss: {
+      plugins: [tailwindcss()], // Add Tailwind CSS support
+    },
+  },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
+      '@': path.resolve(__dirname, './src') // Keep your path aliases
     }
   },
   build: {
@@ -19,6 +25,7 @@ export default defineConfig({
     }
   },
   server: {
-    port: 3000
+    port: 3000,
+    open: true // Automatically open browser on npm run dev
   }
 })
